@@ -1,55 +1,155 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <title>나폴리탄 수칙서</title>
-  <link rel="manifest" href="./manifest.json">
-  <meta name="theme-color" content="#000000">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="수칙서">
-  <style>
-    body {
-      margin: 0;
-      background-color: black;
-      color: #dcdcdc;
-      font-family: serif;
-      line-height: 1.6;
-      padding: 30px;
-      padding-top: calc(30px + env(safe-area-inset-top));
-      padding-bottom: calc(30px + env(safe-area-inset-bottom));
-    }
-    #game-container {
-      max-width: 500px;
-      margin: auto;
-    }
-    h1 {
-      border-bottom: 1px solid #444;
-      padding-bottom: 10px;
-      font-size: 1.5em;
-    }
-    p {
-      margin: 14px 0;
-    }
-    .glitch {
-      color: red;
-      font-weight: bold;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>나폴리탄 수칙서</title>
+<link rel="manifest" href="./manifest.json">
+<meta name="theme-color" content="#000000">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<meta name="apple-mobile-web-app-title" content="수칙서">
+<style>
+body{
+  margin:0;
+  background:black;
+  color:#dcdcdc;
+  font-family:serif;
+  line-height:1.6;
+  padding:30px;
+  padding-top:calc(30px + env(safe-area-inset-top));
+  padding-bottom:calc(30px + env(safe-area-inset-bottom));
+}
+.page{max-width:500px;margin:auto;display:none}
+.page.active{display:block}
+.cover{
+  border:1px solid #333;
+  padding:24px;
+  min-height:60vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between
+}
+.meta{font-size:.9em;opacity:.85}
+.warning{font-size:.85em;opacity:.6;margin-top:20px}
+.btn{
+  margin-top:24px;
+  border:1px solid #555;
+  padding:10px;
+  text-align:center;
+  cursor:pointer;
+  user-select:none
+}
+.btn:hover{background:#111}
+h2{border-bottom:1px solid #444;padding-bottom:10px;font-size:1.3em}
+.rule{margin:16px 0;cursor:pointer}
+.read{color:#ff5555}
+.locked{opacity:.3}
+.flash{animation:flash .2s alternate 3}
+@keyframes flash{from{background:black}to{background:#220000}}
+.fade{animation:fade .6s}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+</style>
 </head>
 <body>
-  <div id="game-container">
-    <h1>[기밀] XX터널 작업자 수칙</h1>
-    <p>1. 터널 내에서 휘파람 소리가 들리면 즉시 귀를 막으십시오.</p>
-    <p class="glitch">2. 4번 출구는 존재하지 않습니다. 만약 보인다면...</p>
+
+<div id="coverPage" class="page active fade">
+  <div class="cover">
+    <div>
+      <h1>XX터널 근무 수첩</h1>
+      <div class="meta" id="statusText"></div>
+      <div class="warning">
+        본 수첩은 근무 중에만 열람하십시오.<br>
+        분실 시 즉시 보고할 것.
+      </div>
+    </div>
+    <div class="btn" onclick="openRules()">▶ 수칙 열람</div>
   </div>
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('./sw.js');
-      });
-    }
-  </script>
+</div>
+
+<div id="rulesPage" class="page fade">
+  <h2>[기밀] 작업자 수칙</h2>
+
+  <div class="rule" onclick="readRule(0)">
+    1. 터널 내에서 휘파람 소리가 들리면 즉시 귀를 막으십시오.
+  </div>
+
+  <div class="rule" onclick="readRule(1)">
+    2. 작업 중 동료가 이름을 부르더라도 뒤돌아보지 마십시오.
+  </div>
+
+  <div class="rule locked" id="nightRule" onclick="readRule(2)">
+    3. 야간 근무 중, 조명이 꺼진 구간에는 들어가지 마십시오.
+  </div>
+
+  <div class="rule locked" id="forbiddenRule" onclick="readRule(3)">
+    4. 이 수칙을 읽을 수 있다면 즉시 수첩을 덮으십시오.
+  </div>
+
+  <div class="btn" onclick="prevRule()">◀ 이전</div>
+  <div class="btn" onclick="nextRule()">다음 ▶</div>
+  <div class="btn" onclick="backToCover()">◀ 표지로</div>
+</div>
+
+<script>
+let currentIndex = 0;
+const rules = document.querySelectorAll('.rule');
+const saved = JSON.parse(localStorage.getItem('readRules')||'[]');
+
+saved.forEach(i=>rules[i]?.classList.add('read'));
+
+function openRules(){
+  document.body.classList.add('flash');
+  setTimeout(()=>{
+    document.body.classList.remove('flash');
+    showPage('rulesPage');
+    showRule(currentIndex);
+  },600);
+}
+
+function backToCover(){showPage('coverPage')}
+
+function showPage(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+function showRule(i){
+  rules.forEach(r=>r.style.display='none');
+  rules[i].style.display='block';
+}
+
+function nextRule(){
+  if(currentIndex < rules.length-1){currentIndex++;showRule(currentIndex)}
+}
+
+function prevRule(){
+  if(currentIndex > 0){currentIndex--;showRule(currentIndex)}
+}
+
+function readRule(i){
+  rules[i].classList.add('read');
+  if(!saved.includes(i)){saved.push(i)}
+  localStorage.setItem('readRules',JSON.stringify(saved));
+  if(saved.length>=3){
+    document.getElementById('forbiddenRule').classList.remove('locked');
+  }
+}
+
+const now=new Date();
+const h=now.getHours();
+const night=h>=22||h<6;
+document.getElementById('statusText').innerHTML=
+  `날짜: ${now.toLocaleDateString('ko-KR')}<br>상태: ${night?'야간 근무 중':'주간 근무 중'}`;
+
+if(night){
+  document.getElementById('nightRule').classList.remove('locked');
+}
+
+if('serviceWorker'in navigator){
+  window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+}
+</script>
+
 </body>
 </html>
