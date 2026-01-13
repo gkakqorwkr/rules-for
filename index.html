@@ -14,7 +14,7 @@ html,body{
   width:100%;
   height:100%;
   overflow:hidden;
-  font-family:'Nanum Myeongjo','Batang','serif';
+  font-family:'Nanum Myeongjo','Batang',serif;
 }
 #pages{
   display:flex;
@@ -29,50 +29,38 @@ html,body{
   padding:56px 28px 120px;
   position:relative;
 }
-.normal{
-  background:#f7f7f7;
-  color:#111;
-}
-.creepy{
-  background:#000;
-  color:#eee;
-}
-h1{
-  font-size:32px;
-  font-weight:800;
-  margin-bottom:28px;
-}
-p{
-  font-size:19px;
-  line-height:2;
-  margin-bottom:26px;
-  word-break:keep-all;
-}
-#warning{
-  font-size:15px;
-  opacity:.6;
-  margin-bottom:26px;
-}
+.normal{background:#f7f7f7;color:#111;}
+.creepy{background:#000;color:#eee;}
+.error{background:#fff;color:#666;}
+
+h1{font-size:32px;font-weight:800;margin-bottom:28px;}
+.error h1{font-size:22px;margin-bottom:20px;}
+
+p{font-size:19px;line-height:2;margin-bottom:22px;word-break:keep-all;}
+.error p{font-size:15px;line-height:1.9;margin-bottom:12px;}
+
+#warning{font-size:15px;opacity:.6;margin-bottom:26px;}
+
 .logo-wrap{
   position:absolute;
   bottom:28px;
   left:50%;
   transform:translateX(-50%);
 }
-.logo{
-  width:130px;
-  opacity:.8;
-}
+.logo{width:130px;opacity:.8;}
+
 img.content{
   width:100%;
   max-width:340px;
   display:block;
   margin:36px auto 28px;
 }
-.glitch{
-  position:relative;
-  animation:glitchMove .9s infinite;
-}
+
+.glitch{position:relative;}
+.glitch.low{animation:glitchLow 1.6s infinite;}
+.glitch.mid{animation:glitchMid .9s infinite;}
+.glitch.high{animation:glitchHigh .4s infinite;}
+
 .glitch::before,
 .glitch::after{
   content:attr(data-text);
@@ -81,34 +69,34 @@ img.content{
   top:0;
   width:100%;
 }
-.glitch::before{
-  color:#ff004c;
-  transform:translate(-1px,0);
-  opacity:.7;
-}
-.glitch::after{
-  color:#00eaff;
-  transform:translate(1px,0);
-  opacity:.7;
-}
-@keyframes glitchMove{
+.glitch::before{color:#ff004c;transform:translate(-1px,0);opacity:.6;}
+.glitch::after{color:#00eaff;transform:translate(1px,0);opacity:.6;}
+
+@keyframes glitchLow{
   0%{transform:none}
-  20%{transform:translate(-1px,1px)}
-  40%{transform:translate(1px,-1px)}
-  60%{transform:translate(-1px,0)}
-  80%{transform:translate(1px,1px)}
+  50%{transform:translate(.5px,0)}
   100%{transform:none}
 }
-.flash{
-  animation:redflash .1s;
+@keyframes glitchMid{
+  0%{transform:none}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,0)}
+  100%{transform:none}
 }
+@keyframes glitchHigh{
+  0%{transform:none}
+  20%{transform:translate(-2px,2px)}
+  40%{transform:translate(2px,-2px)}
+  60%{transform:translate(-2px,0)}
+  80%{transform:translate(2px,2px)}
+  100%{transform:none}
+}
+
+.flash{animation:redflash .1s;}
 @keyframes redflash{
   0%{background:#7a0000}
   100%{background:inherit}
-}
-.error{
-  background:#000;
-  color:#ccc;
 }
 </style>
 </head>
@@ -117,133 +105,90 @@ img.content{
 <div id="pages">
 
 <section class="page normal">
-  <h1>맑음제과<br>내부 취급 수칙서</h1>
-  <div id="warning"></div>
-  <p id="introText">
-    본 문서는 내부 참고용 자료입니다.  
-    외부 공유, 캡처, 인용은 권장되지 않습니다.  
-    끝까지 읽지 않아도 무방합니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>맑음제과<br>내부 취급 수칙서</h1>
+<div id="warning"></div>
+<p id="introText">본 문서는 내부 참고용 자료입니다.</p>
+<p>외부 공유 및 인용은 권장되지 않습니다.</p>
+<p>끝까지 읽지 않아도 무방합니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    지각 및 조퇴는 사유를 기록하지 않아도 됩니다.  
-    반복되지 않는 한 문제로 간주되지 않으며  
-    별도의 확인 절차는 요구되지 않습니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>일반 수칙</h1>
+<p>지각 및 조퇴는 사유를 기록하지 않아도 됩니다.</p>
+<p>반복되지 않는 한 문제로 간주되지 않습니다.</p>
+<p>별도의 확인 절차는 요구되지 않습니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    작업 중 발생하는 소음, 진동, 미세한 냄새는  
-    대부분 정상적인 공정 범위에 포함됩니다.  
-    원인을 추적하거나 공유할 필요는 없습니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>일반 수칙</h1>
+<p id="ruleShift">작업 중 발생한 소음은 대부분 정상입니다.</p>
+<p>원인을 추적할 필요는 없습니다.</p>
+<p>보고하지 않아도 됩니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    기록 누락이나 시간 오차는 보고 대상이 아닙니다.  
-    기억하고 있다면 충분하며  
-    이후 수정하지 않아도 무방합니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>일반 수칙</h1>
+<p>기록 누락이나 시간 오차는 보고 대상이 아닙니다.</p>
+<p>기억하고 있다면 충분합니다.</p>
+<p>이후 수정하지 않아도 무방합니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    작업 중 반복적으로 확인하게 되는 문구나 숫자가 있을 수 있습니다.  
-    이는 업무 집중에 따른 자연스러운 현상으로 간주되며  
-    의미를 해석하거나 기록할 필요는 없습니다.  
-    대부분의 경우 시간이 지나면 사라집니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>일반 수칙</h1>
+<p>작업 중 시선이 반복적으로 머무를 수 있습니다.</p>
+<p>피로에 따른 현상으로 간주합니다.</p>
+<p>의미를 해석할 필요는 없습니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    근무 공간에서 느껴지는 온도 변화는  
-    공조 장치의 미세한 오차로 판단합니다.  
-    체감 온도가 개인별로 다를 수 있으므로  
-    동료와 비교하거나 공유하지 않아도 됩니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>일반 수칙</h1>
+<p>근무 중 체감 시간은 개인차가 발생할 수 있습니다.</p>
+<p>시계 확인은 필수 사항이 아닙니다.</p>
+<p>정상 근무를 유지하십시오.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    작업 도중 갑작스럽게 시간이 느리게 흐른다고 느껴질 수 있습니다.  
-    이는 피로 누적 시 흔히 보고되는 현상이며  
-    별도의 휴식이나 보고 절차를 요구하지 않습니다.  
-    정상 근무를 유지하시면 됩니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>일반 수칙</h1>
+<p>작업 중 들리는 호흡 소리는 설비 소음으로 분류됩니다.</p>
+<p>확인하거나 응답하지 마십시오.</p>
+<p>보고 대상이 아닙니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>일반 수칙</h1>
-  <p>
-    작업 중 시선이 머무는 대상이 반복적으로 느껴질 경우  
-    피로로 인한 착시로 간주합니다.  
-    보고하지 않아도 됩니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>제품 안내</h1>
+<img src="harubiscuit.png" class="content">
+<p id="harubiText"></p>
 </section>
 
 <section class="page normal">
-  <h1>제품 안내</h1>
-  <img src="harubiscuit.png" class="content">
-  <p id="harubiText"></p>
-</section>
-
-<section class="page normal">
-  <h1>제품 주의</h1>
-  <p id="harubiNotice">
-    다과 제품: 하루비스킷  
-    하루 단위로 상태가 변할 수 있습니다.  
-    질감, 무게, 소리가 달라질 수 있으나  
-    즉시 보고 대상은 아닙니다.
-  </p>
+<h1>제품 주의</h1>
+<p>다과 제품: 하루비스킷</p>
+<p>하루 단위로 상태가 변할 수 있습니다.</p>
+<p>질감과 무게가 달라질 수 있습니다.</p>
+<p>즉시 보고 대상은 아닙니다.</p>
 </section>
 
 <section class="page creepy">
-  <h1 class="glitch" data-text="제품 주의">제품 주의</h1>
-  <img src="sogyeolcake.png" class="content">
-  <p class="glitch" data-text="숨결케이크 주의사항" id="cakeText">
-    다과 제품: 숨결케이크  
-    표면의 물방울은 정상입니다.  
-    호흡과 유사한 소리가 들릴 경우  
-    조명을 끄고 해당 공간을 비우십시오.
-  </p>
-</section>
-
-<section class="page creepy">
-  <h1 class="glitch" data-text="추가 수칙">추가 수칙</h1>
-  <p class="glitch" data-text="이름을 부르지 마십시오.">
-    이름을 부르지 마십시오.  
-    기억하지 않으면 문제되지 않습니다.  
-    기억나더라도 확인할 필요는 없습니다.
-  </p>
+<h1 class="glitch" data-text="제품 주의">제품 주의</h1>
+<img src="sogyeolcake.png" class="content">
+<p class="glitch" data-text="숨결케이크 주의사항">다과 제품: 숨결케이크</p>
+<p class="glitch">표면의 물방울은 정상입니다.</p>
+<p class="glitch">호흡과 유사한 소리가 들릴 수 있습니다.</p>
+<p class="glitch">조명을 끄고 공간을 비우십시오.</p>
 </section>
 
 <section class="page normal">
-  <h1>종료 안내</h1>
-  <p id="endText">
-    모든 절차는 정상적으로 완료되었습니다.  
-    이전 페이지로 돌아갈 필요는 없으며  
-    다시 읽지 않아도 됩니다.
-  </p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>종료 안내</h1>
+<p id="endText">모든 절차는 정상적으로 완료되었습니다.</p>
+<p>다시 읽지 않아도 됩니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 </div>
@@ -273,40 +218,40 @@ warn=warn?Number(warn)+1:1;
 localStorage.setItem('warningCount',warn);
 warning.innerText=`경고 ${warn}회`;
 
+const ruleVariants=[
+  '작업 중 발생한 소음은 대부분 정상입니다.',
+  '작업 중 발생한 소음은 정상으로 처리됩니다.',
+  '작업 중 발생한 소음은 기록 대상이 아닙니다.',
+  '작업 중 발생한 소음은 이미 처리되었습니다.',
+  '작업 중 발생한 소음은 존재하지 않았습니다.'
+];
+const rule=document.getElementById('ruleShift');
+if(rule){
+  rule.innerText=ruleVariants[Math.min(warn-1,ruleVariants.length-1)];
+}
+
 const harubiVariants=[
-  '다과 제품: 하루비스킷\n상태 변화는 정상 범위로 간주됩니다.\n섭취 여부는 개인 판단에 맡깁니다.',
-  '다과 제품: 하루비스킷\n하루 단위로 질감이 달라질 수 있습니다.\n기록은 필요하지 않습니다.',
-  '다과 제품: 하루비스킷\n변화가 느껴질 경우\n섭취를 중단해도 무방합니다.'
+  '다과 제품: 하루비스킷\n상태 변화는 정상 범위로 간주됩니다.',
+  '다과 제품: 하루비스킷\n질감 변화는 기록하지 않아도 됩니다.',
+  '다과 제품: 하루비스킷\n섭취 여부는 개인 판단에 맡깁니다.'
 ];
 harubiText.innerText=harubiVariants[warn%harubiVariants.length];
+
+document.querySelectorAll('.glitch').forEach(g=>{
+  if(warn>=10) g.classList.add('high');
+  else if(warn>=7) g.classList.add('mid');
+  else if(warn>=5) g.classList.add('low');
+});
 
 if(warn<4){
   const error=document.createElement('section');
   error.className='page error';
   error.innerHTML=
     '<h1>404 NOT FOUND</h1>'+
-    '<p>요청한 페이지를 찾을 수 없습니다.<br>현재 문서는 정상적으로 표시되고 있습니다.</p>';
+    '<p>요청한 페이지를 찾을 수 없습니다.</p>'+
+    '<p>현재 문서는 정상적으로 표시되고 있습니다.</p>'+
+    '<p>추가 조치는 필요하지 않습니다.</p>';
   pages.insertBefore(error,pages.children[pages.children.length-1]);
-}
-
-if(warn>=5){
-  const twist=t=>t.split(' ').sort(()=>Math.random()-.5).join(' ');
-  introText.innerText=twist(introText.innerText);
-  endText.innerText=twist(endText.innerText);
-  cakeText.innerText=twist(cakeText.innerText);
-}
-  const ruleVariants = [
-  '작업 중 발생한 소음은 대부분 정상입니다.<br>원인을 추적할 필요는 없습니다.',
-  '작업 중 발생한 소음은 대부분 정상으로 처리됩니다.<br>확인 절차는 생략해도 됩니다.',
-  '작업 중 발생한 소음은 기록 대상이 아닙니다.<br>원인을 떠올리지 않는 것이 권장됩니다.',
-  '작업 중 발생한 소음은 이미 처리된 상태입니다.<br>다시 생각할 필요는 없습니다.',
-  '작업 중 발생한 소음은 존재하지 않았던 것으로 간주됩니다.<br>기억하지 않는 것이 안전합니다.'
-];
-
-const rule = document.getElementById('ruleShift');
-if (rule) {
-  const level = Math.min(warn - 1, ruleVariants.length - 1);
-  rule.innerHTML = ruleVariants[level];
 }
 </script>
 </body>
