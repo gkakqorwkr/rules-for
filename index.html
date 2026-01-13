@@ -1,4 +1,242 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, viewport-fit=cover">
+<title>맑음제과 내부 취급 수칙서</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:'Nanum Myeongjo','Batang',serif;
+}
+#pages{
+  display:flex;
+  width:100%;
+  height:100%;
+  transition:transform .45s ease;
+}
+.page{
+  min-width:100%;
+  height:100%;
+  box-sizing:border-box;
+  padding:56px 28px 120px;
+  position:relative;
+}
+.normal{background:#f7f7f7;color:#111;}
+.creepy{background:#000;color:#eee;}
+.error{background:#fff;color:#666;}
+.cake-dark{background:#000;color:#eee;}
+
+h1{font-size:32px;font-weight:800;margin-bottom:28px;}
+.error h1{font-size:22px;margin-bottom:20px;}
+
+p{font-size:19px;line-height:2;margin-bottom:22px;word-break:keep-all;}
+.error p{font-size:15px;line-height:1.9;margin-bottom:12px;}
+
+#warning{font-size:15px;opacity:.6;margin-bottom:26px;}
+
+.logo-wrap{
+  position:absolute;
+  bottom:28px;
+  left:50%;
+  transform:translateX(-50%);
+}
+.logo{width:130px;opacity:.8;}
+
+img.content{
+  width:100%;
+  max-width:340px;
+  display:block;
+  margin:36px auto 28px;
+}
+
+.glitch{position:relative;}
+.glitch.low{animation:glitchLow 1.6s infinite;}
+.glitch.mid{animation:glitchMid .9s infinite;}
+.glitch.high{animation:glitchHigh .4s infinite;}
+
+.glitch::before,
+.glitch::after{
+  content:attr(data-text);
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+}
+.glitch::before{color:#ff004c;transform:translate(-1px,0);opacity:.6;}
+.glitch::after{color:#00eaff;transform:translate(1px,0);opacity:.6;}
+
+@keyframes glitchLow{
+  0%{transform:none}
+  50%{transform:translate(.5px,0)}
+  100%{transform:none}
+}
+@keyframes glitchMid{
+  0%{transform:none}
+  25%{transform:translate(-1px,1px)}
+  50%{transform:translate(1px,-1px)}
+  75%{transform:translate(-1px,0)}
+  100%{transform:none}
+}
+@keyframes glitchHigh{
+  0%{transform:none}
+  20%{transform:translate(-2px,2px)}
+  40%{transform:translate(2px,-2px)}
+  60%{transform:translate(-2px,0)}
+  80%{transform:translate(2px,2px)}
+  100%{transform:none}
+}
+
+.flash{animation:redflash .1s;}
+@keyframes redflash{
+  0%{background:#7a0000}
+  100%{background:inherit}
+}
+</style>
+</head>
+
+<body>
+<div id="pages">
+
+<section class="page normal">
+<h1>맑음제과<br>내부 취급 수칙서</h1>
+<div id="warning"></div>
+<p id="introText">본 문서는 내부 참고용 자료입니다.</p>
+<p>외부 공유 및 인용은 권장되지 않습니다.</p>
+<p>끝까지 읽지 않아도 무방합니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
+</section>
+
+<section class="page normal"><h1>일반 수칙</h1><p>지각 및 조퇴는 사유를 기록하지 않아도 됩니다.</p><p>반복되지 않으면 문제로 간주되지 않습니다.</p><p>확인 절차는 요구되지 않습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+
+<section class="page normal"><h1>일반 수칙</h1><p id="ruleShift">작업 중 발생한 소음은 대부분 정상입니다.</p><p>원인을 추적할 필요는 없습니다.</p><p>보고하지 않아도 됩니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+
+<section class="page normal"><h1>일반 수칙</h1><p>기록 누락이나 시간 오차는 보고 대상이 아닙니다.</p><p>기억하고 있다면 충분합니다.</p><p>수정하지 않아도 됩니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+
+<section class="page normal">
+<h1>일반 수칙</h1>
+<p>근무 중 체온 변화는 정상 범위에 포함됩니다.</p>
+<p>손에 남는 감각은 시간이 지나면 사라집니다.</p>
+<p>특정 냄새가 반복적으로 느껴질 수 있습니다.</p>
+<p>감각 이상이 지속되더라도 보고하지 않아도 됩니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
+</section>
+
+<section class="page normal"><h1>일반 수칙</h1><p>시선이 머무는 현상이 발생할 수 있습니다.</p><p>피로로 인한 반응입니다.</p><p>의미를 해석하지 마십시오.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+
+<section class="page normal">
+<h1>일반 수칙</h1>
+<p>작업 중 발생한 누락은 대부분 이미 반영된 것으로 간주합니다.</p>
+<p>동일한 내용을 여러 번 확인할 필요는 없습니다.</p>
+<p>기록이 남아 있지 않더라도 문제가 되지 않습니다.</p>
+<p>기억과 실제 기록의 차이는 중요하지 않습니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
+</section>
+
+<section class="page normal"><h1>제품 안내</h1><img src="harubiscuit.png" class="content"><p id="harubiText"></p></section>
+
+<section class="page normal"><h1>제품 주의</h1><p>다과 제품: 하루비스킷</p><p>하루 단위로 상태가 변할 수 있습니다.</p><p>질감과 무게가 달라질 수 있습니다.</p><p>즉시 보고 대상은 아닙니다.</p></section>
+
+<section class="page" id="cakePage">
+<h1 data-text="제품 주의">제품 주의</h1>
+<img src="sogyeolcake.png" class="content">
+<p data-text="다과 제품: 숨결케이크">다과 제품: 숨결케이크</p>
+<p data-text="표면의 물방울은 정상입니다.">표면의 물방울은 정상입니다.</p>
+<p data-text="호흡과 유사한 소리가 들릴 수 있습니다.">호흡과 유사한 소리가 들릴 수 있습니다.</p>
+<p data-text="조명을 끄고 공간을 비우십시오.">조명을 끄고 공간을 비우십시오.</p>
+</section>
+
+<section class="page normal">
+<h1>종료 안내</h1>
+<p id="endText">모든 절차는 정상적으로 완료되었습니다.</p>
+<p>다시 읽지 않아도 됩니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
+</section>
+
+</div>
+
+<script>
+let index=0;
+const pages=document.getElementById('pages');
+let startX=0;
+
+document.addEventListener('touchstart',e=>startX=e.touches[0].clientX);
+document.addEventListener('touchend',e=>{
+  let diff=e.changedTouches[0].clientX-startX;
+  if(diff<-40&&index<pages.children.length-1)index++;
+  if(diff>40&&index>0)index--;
+  pages.style.transform=`translateX(-${index*100}%)`;
+});
+
+let warn=localStorage.getItem('warningCount');
+warn=warn?Number(warn)+1:1;
+localStorage.setItem('warningCount',warn);
+warning.innerText=`경고 ${warn}회`;
+
+const ruleVariants=[
+  '작업 중 발생한 소음은 대부분 정상입니다.',
+  '작업 중 발생한 소음은 정상으로 처리됩니다.',
+  '작업 중 발생한 소음은 기록 대상이 아닙니다.',
+  '작업 중 발생한 소음은 이미 처리되었습니다.',
+  '작업 중 발생한 소음은 존재하지 않았습니다.'
+];
+ruleShift.innerText=ruleVariants[Math.min(warn-1,ruleVariants.length-1)];
+
+const harubiVariants=[
+  '다과 제품: 하루비스킷\n상태 변화는 정상 범위로 간주됩니다.',
+  '다과 제품: 하루비스킷\n질감 변화는 기록하지 않아도 됩니다.',
+  '다과 제품: 하루비스킷\n섭취 여부는 개인 판단에 맡깁니다.'
+];
+harubiText.innerText=harubiVariants[warn%harubiVariants.length];
+
+const cakePage=document.getElementById('cakePage');
+if(cakePage){
+  const t=cakePage.querySelectorAll('h1,p');
+  if(warn>=5) cakePage.classList.add('cake-dark');
+  if(warn>=7) t.forEach(e=>{e.classList.add('glitch','mid');});
+  if(warn>=10) t.forEach(e=>{e.classList.remove('mid');e.classList.add('high');});
+}
+
+if(warn>=11){
+  document.querySelectorAll('h1,p').forEach(e=>{
+    e.classList.add('glitch','high');
+    if(!e.dataset.text) e.dataset.text=e.innerText;
+  });
+}
+
+function make404(type){
+  const p=document.createElement('section');
+  p.className='page error';
+  if(type==='normal'){
+    p.innerHTML='<h1>404 NOT FOUND</h1><p>요청하신 페이지를 찾을 수 없습니다.</p>';
+  }
+  if(type==='corrupt'){
+    p.innerHTML='<h1>기록 일련번호: #ERR_404_EAT</h1><p>도망가십시오.<br>기록자는 사라졌습니다.</p>';
+    p.querySelectorAll('h1,p').forEach(e=>{e.classList.add('glitch','mid');});
+  }
+  if(type==='warning'){
+    p.innerHTML='<h1>전임자 기록</h1><p>도망가<br>도망가<br>읽지 마<br>이미 늦었다</p>';
+    p.querySelectorAll('h1,p').forEach(e=>{e.classList.add('glitch','high');});
+  }
+  return p;
+}
+
+if(warn>=5&&warn<=10){
+  let t='normal';
+  if(warn>=8) t='corrupt';
+  if(warn>=10) t='warning';
+  pages.appendChild(make404(t));
+}
+</script>
+</body>
+</html>
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
