@@ -9,7 +9,9 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 
 <style>
-html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:serif;}
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&display=swap');
+
+html,body{margin:0;padding:0;width:100%;height:100%;overflow:hidden;font-family:'Nanum Myeongjo',serif;}
 #pages{display:flex;width:100%;height:100%;transition:transform .45s ease;}
 .page{min-width:100%;height:100%;box-sizing:border-box;padding:52px 26px 120px;position:relative;}
 .normal{background:#ffffff;color:#111;}
@@ -33,47 +35,49 @@ img.content{width:100%;max-width:340px;display:block;margin:36px auto;}
 <div id="pages">
 
 <section class="page normal">
-  <h1>맑음제과<br>내부 취급 수칙서</h1>
-  <div id="warning"></div>
-  <p id="introText">본 문서는 외부 공유를 금합니다.<br>업무 참고용으로만 사용하십시오.</p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>맑음제과<br>내부 취급 수칙서</h1>
+<div id="warning"></div>
+<p id="introText">본 문서는 외부 공유를 금합니다.<br>업무 참고용으로만 사용하십시오.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal"><h1>일반 수칙</h1><p>근무 중에는 지정된 복장을 착용합니다.<br>복장은 위생 기준을 충족하면 충분합니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>출근 시 체온 측정은 권장 사항입니다.<br>미실시로 인한 불이익은 없습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
 <section class="page normal"><h1>일반 수칙</h1><p>지각 및 조퇴는 사유를 기록하지 않아도 됩니다.<br>반복되지 않으면 문제로 간주되지 않습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
-<section class="page normal"><h1>일반 수칙</h1><p>작업 중 발생한 소음은 대부분 정상입니다.<br>원인을 추적할 필요는 없습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p id="generalShift">작업 중 발생한 소음은 대부분 정상입니다.<br>원인을 추적할 필요는 없습니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>작업 공간의 조도는 개인이 조절할 수 있습니다.<br>시야 확보만 가능하면 충분합니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
 <section class="page normal"><h1>일반 수칙</h1><p>위생 장갑 착용은 권장 사항입니다.<br>미착용으로 인한 결과는 개인 책임입니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
-<section class="page normal"><h1>일반 수칙</h1><p>제품 보관 온도는 계절에 따라 달라질 수 있습니다.<br>수치 확인은 필수가 아닙니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
+<section class="page normal"><h1>일반 수칙</h1><p>작업 중 피로감은 자연스러운 현상입니다.<br>휴식 여부는 개인 판단에 따릅니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
 <section class="page normal"><h1>일반 수칙</h1><p>기록 누락은 보고 대상이 아닙니다.<br>기억하고 있다면 충분합니다.</p><div class="logo-wrap"><img src="logo.png" class="logo"></div></section>
 
 <section class="page normal">
-  <h1>제품 안내</h1>
-  <img src="harubiscuit.png" class="content">
-  <p><b>다과 제품: 하루비스킷</b><br>하루 단위로 상태가 변할 수 있습니다.<br>변화를 느꼈다면 섭취를 중단해도 됩니다.</p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>제품 안내</h1>
+<img src="harubiscuit.png" class="content">
+<p id="harubiText"></p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page normal">
-  <h1>책임</h1>
-  <p>본 문서에 명시되지 않은 상황은<br>회사 책임 범위에 포함되지 않습니다.</p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>책임</h1>
+<p>본 문서에 명시되지 않은 상황은<br>회사 책임 범위에 포함되지 않습니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 <section class="page creepy">
-  <h1 class="glitch">제품 주의</h1>
-  <img src="sogyeolcake.png" class="content">
-  <p class="glitch" id="cakeText"><b>다과 제품: 숨결케이크</b><br>표면의 물방울은 정상입니다.<br>소리가 들릴 경우 조명을 끄십시오.</p>
+<h1 class="glitch">제품 주의</h1>
+<img src="sogyeolcake.png" class="content">
+<p class="glitch" id="cakeText"><b>다과 제품: 숨결케이크</b><br>표면의 물방울은 정상입니다.<br>소리가 들릴 경우 조명을 끄십시오.</p>
 </section>
 
 <section class="page creepy">
-  <h1 class="glitch">수칙</h1>
-  <p class="glitch">이름을 부르지 마십시오.<br>기억하지 않으면 문제되지 않습니다.</p>
+<h1 class="glitch">수칙</h1>
+<p class="glitch">이름을 부르지 마십시오.<br>기억하지 않으면 문제되지 않습니다.</p>
 </section>
 
 <section class="page normal">
-  <h1>종료 안내</h1>
-  <p id="endText">모든 절차는 정상적으로 완료되었습니다.<br>다시 확인할 필요는 없습니다.</p>
-  <div class="logo-wrap"><img src="logo.png" class="logo"></div>
+<h1>종료 안내</h1>
+<p id="endText">모든 절차는 정상적으로 완료되었습니다.<br>다시 확인할 필요는 없습니다.</p>
+<div class="logo-wrap"><img src="logo.png" class="logo"></div>
 </section>
 
 </div>
@@ -89,13 +93,30 @@ document.addEventListener('touchend',e=>{
   if(diff<-40&&index<pages.children.length-1)index++;
   if(diff>40&&index>0)index--;
   pages.style.transform=`translateX(-${index*100}%)`;
-  if(warn>=7){const p=pages.children[index];if(p.classList.contains('creepy')){p.classList.add('flash');setTimeout(()=>p.classList.remove('flash'),100);}}
+  if(warn>=7){
+    const p=pages.children[index];
+    if(p.classList.contains('creepy')){
+      p.classList.add('flash');
+      setTimeout(()=>p.classList.remove('flash'),100);
+    }
+  }
 });
 
 let warn=localStorage.getItem('warningCount');
 warn=warn?Number(warn)+1:1;
 localStorage.setItem('warningCount',warn);
 warning.innerText=`경고 ${warn}회`;
+
+if(warn>=2){
+  generalShift.innerHTML='작업 중 발생한 소음은 대부분 <b>무시됩니다</b>.<br>원인을 확인하지 않아도 됩니다.';
+}
+
+const harubiVariants=[
+  '하루 단위로 상태가 변할 수 있습니다.<br>변화를 느꼈다면 섭취를 중단해도 됩니다.',
+  '하루 단위로 상태가 변할 수 있습니다.<br>섭취 여부는 개인 판단에 맡깁니다.',
+  '하루 단위로 상태가 변할 수 있습니다.<br>기록은 필요하지 않습니다.'
+];
+harubiText.innerHTML='<b>다과 제품: 하루비스킷</b><br>'+harubiVariants[warn%harubiVariants.length];
 
 if(warn>=3){
   const tv=document.createElement('section');
