@@ -1,10 +1,10 @@
 {
-  "name": "나폴리탄 수칙서",
-  "short_name": "수칙서",
+  "name": "맑음제과 내부 취급 수칙서",
+  "short_name": "맑음제과",
   "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#000000",
+  "background_color": "#f7f7f7",
+  "theme_color": "#f7f7f7",
   "icons": [
     {
       "src": "icon-192.png",
