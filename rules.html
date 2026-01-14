@@ -58,12 +58,14 @@ html,body{
 }
 
 .fade{
-  opacity:.55;
+  opacity:.45;
+  filter:blur(1.1px);
+  transition:opacity .6s ease, filter .6s ease;
 }
 
-.basement{
-  margin-top:10px;
-  font-weight:700;
+.fade.visible{
+  opacity:1;
+  filter:none;
 }
 
 .footer{
@@ -130,6 +132,16 @@ html,body{
 </div>
 
 </div>
+
+<script>
+const weather = localStorage.getItem('hanadong_weather') || '맑음';
+
+if(weather === '비'){
+  document.querySelectorAll('.fade').forEach(el=>{
+    el.classList.add('visible');
+  });
+}
+</script>
 
 </body>
 </html>
