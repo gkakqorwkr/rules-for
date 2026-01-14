@@ -61,28 +61,9 @@ html,body{
   opacity:.55;
 }
 
-.weather-box{
-  position:fixed;
-  top:18px;
-  right:18px;
-  font-size:13px;
-  background:rgba(255,255,255,.6);
-  border:1px solid rgba(0,0,0,.15);
-  padding:10px 14px;
-  line-height:1.6;
-}
-
 .basement{
   margin-top:10px;
   font-weight:700;
-}
-
-.allowed{
-  color:#2f6f8f;
-}
-
-.denied{
-  color:#7a4f4f;
 }
 
 .footer{
@@ -94,12 +75,6 @@ html,body{
 </head>
 
 <body>
-
-<div class="weather-box">
-  <div id="nowDate"></div>
-  <div id="nowTime"></div>
-  <div id="nowWeather"></div>
-</div>
 
 <div class="wrap">
 
@@ -137,17 +112,9 @@ html,body{
 </div>
 
 <div class="rule">
-  <h2>날씨</h2>
-  <p>한아동의 날씨는 외부 지역과 다를 수 있습니다.</p>
-  <p class="fade">날씨 변화는 내부 기준에 따라 적용됩니다.</p>
-</div>
-
-<div class="rule">
   <h2>경민 아파트</h2>
   <p>경민 아파트 지하에는 출입하지 마십시오.</p>
-  <p id="basementRule" class="basement denied">
-    현재 지하 출입은 허용되지 않습니다.
-  </p>
+  <p class="fade">비가 오는 날에는 예외가 적용될 수 있습니다.</p>
 </div>
 
 <div class="rule">
@@ -163,45 +130,6 @@ html,body{
 </div>
 
 </div>
-
-<script>
-const weatherTypes = ['맑음','비','눈','번개','안개','강풍'];
-
-function getWeather(){
-  let w = localStorage.getItem('hanadong_weather');
-  let t = localStorage.getItem('hanadong_weather_time');
-  const now = Date.now();
-
-  if(!w || !t || now - Number(t) > 600000){
-    w = weatherTypes[Math.floor(Math.random()*weatherTypes.length)];
-    localStorage.setItem('hanadong_weather', w);
-    localStorage.setItem('hanadong_weather_time', now);
-  }
-  return w;
-}
-
-function updateClock(){
-  const d = new Date();
-  document.getElementById('nowDate').innerText =
-    `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
-  document.getElementById('nowTime').innerText =
-    `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
-}
-
-const weather = getWeather();
-document.getElementById('nowWeather').innerText = `한아동 ${weather}`;
-
-const basement = document.getElementById('basementRule');
-
-if(weather === '비'){
-  basement.innerText = '비가 오는 날에는 지하 출입이 허용됩니다.';
-  basement.classList.remove('denied');
-  basement.classList.add('allowed');
-}
-
-updateClock();
-setInterval(updateClock,60000);
-</script>
 
 </body>
 </html>
