@@ -43,6 +43,7 @@ h1{
   margin-bottom:40px;
   font-size:15px;
   line-height:1.8;
+  white-space:pre-line;
 }
 
 .menu{
@@ -70,6 +71,25 @@ h1{
   opacity:.5;
   line-height:1.6;
 }
+
+.wind{
+  animation:windMove 6s infinite alternate ease-in-out;
+}
+
+@keyframes windMove{
+  from{transform:translateX(-1px)}
+  to{transform:translateX(1px)}
+}
+
+.flash{
+  animation:flash 4s infinite;
+}
+
+@keyframes flash{
+  0%,96%,100%{filter:none}
+  97%{filter:contrast(1.2)}
+  98%{filter:brightness(1.1)}
+}
 </style>
 </head>
 
@@ -81,13 +101,13 @@ h1{
 Hanadong Administrative Information Portal
 </div>
 
-<div class="notice">
-본 사이트는 한아동 관련 정보를 제공합니다.<br>
-모든 정보는 참고용이며, 최신 상태를 보장하지 않습니다.<br>
+<div class="notice" id="noticeBox">
+본 사이트는 한아동 관련 정보를 제공합니다.
+모든 정보는 참고용이며, 최신 상태를 보장하지 않습니다.
 일부 내용은 확인이 불가능할 수 있습니다.
 </div>
 
-<div class="menu">
+<div class="menu" id="menu">
   <a href="rules.html">생활 수칙</a>
   <a href="facilities.html">시설 안내</a>
   <a href="map.html">지도 보기</a>
@@ -96,8 +116,8 @@ Hanadong Administrative Information Portal
 </div>
 
 <div class="footer">
-한아동 주민센터<br>
-본 시스템은 자동으로 관리되지 않습니다.<br>
+한아동 주민센터
+본 시스템은 자동으로 관리되지 않습니다.
 접속 기록은 저장되지 않을 수 있습니다.
 </div>
 
@@ -108,13 +128,67 @@ let v = localStorage.getItem('hanadong_visit');
 v = v ? Number(v) + 1 : 1;
 localStorage.setItem('hanadong_visit', v);
 
+function getHanadongWeather(){
+  const today = new Date().toISOString().slice(0,10);
+  const saved = localStorage.getItem('hanadongWeather');
+
+  if(saved){
+    const data = JSON.parse(saved);
+    if(data.date === today) return data.weather;
+  }
+
+  const roll = Math.random();
+  let weather = 'clear';
+
+  if(roll < 0.45) weather = 'clear';
+  else if(roll < 0.60) weather = 'rain';
+  else if(roll < 0.70) weather = 'fog';
+  else if(roll < 0.80) weather = 'snow';
+  else if(roll < 0.90) weather = 'wind';
+  else weather = 'thunder';
+
+  localStorage.setItem(
+    'hanadongWeather',
+    JSON.stringify({ date: today, weather })
+  );
+
+  return weather;
+}
+
+const weather = getHanadongWeather();
+
 if(v >= 7){
-  document.querySelector('.notice').innerText =
-    '본 사이트는 정상적으로 운영 중입니다.\n별도의 조치는 필요하지 않습니다.';
+  document.getElementById('noticeBox').innerText =
+`본 사이트는 정상적으로 운영 중입니다.
+별도의 조치는 필요하지 않습니다.`;
 }
 
 if(v >= 12){
   document.body.style.background = '#eee';
+}
+
+if(weather === 'rain'){
+  const link = document.createElement('a');
+  link.href = 'jina-aquarium.html';
+  link.innerText = '지나 수족관';
+  link.style.color = '#5b6b6a';
+  document.getElementById('menu').appendChild(link);
+}
+
+if(weather === 'fog'){
+  document.body.style.filter = 'contrast(0.9) blur(0.2px)';
+}
+
+if(weather === 'snow'){
+  document.body.style.filter = 'brightness(1.05) saturate(0.85)';
+}
+
+if(weather === 'wind'){
+  document.body.classList.add('wind');
+}
+
+if(weather === 'thunder'){
+  document.body.classList.add('flash');
 }
 </script>
 
