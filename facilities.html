@@ -262,17 +262,17 @@ const vanishDelay = 6000;
 function startVanish(){
   clearTimeout(vanishTimer);
   vanishTimer = setTimeout(()=>{
-    document.querySelectorAll('.page h1, .page h2, .page p, .box').forEach(el=>{
+    document.querySelectorAll('.fade, .footer, .mascot-note').forEach(el=>{
       el.style.transition='opacity 2.5s ease, filter 2.5s ease';
       el.style.opacity='0';
-      el.style.filter='blur(12px)';
+      el.style.filter='blur(24px)';
     });
   }, vanishDelay);
 }
 
 function restoreText(){
   clearTimeout(vanishTimer);
-  document.querySelectorAll('.page h1, .page h2, .page p, .box').forEach(el=>{
+  document.querySelectorAll('.fade, .footer, .mascot-note').forEach(el=>{
     el.style.transition='opacity .8s ease, filter .8s ease';
     el.style.opacity='';
     el.style.filter='';
