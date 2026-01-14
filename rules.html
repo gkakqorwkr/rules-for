@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>한아동 생활 수칙</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  background:#eaf6fb;
+  font-family:'Nanum Myeongjo','Batang',serif;
+  color:#243333;
+}
+
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:56px 24px 100px;
+}
+
+.header{
+  margin-bottom:48px;
+}
+
+.header h1{
+  font-size:34px;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+.header .sub{
+  margin-top:10px;
+  font-size:14px;
+  opacity:.6;
+}
+
+.rule{
+  border:1px solid rgba(91,107,106,.35);
+  background:rgba(255,255,255,.65);
+  padding:22px 20px;
+  margin-bottom:28px;
+}
+
+.rule h2{
+  font-size:20px;
+  margin-bottom:12px;
+  color:#5b6b6a;
+}
+
+.rule p{
+  font-size:15px;
+  line-height:1.9;
+  margin:6px 0;
+}
+
+.fade{
+  opacity:.55;
+}
+
+.weather-box{
+  position:fixed;
+  top:18px;
+  right:18px;
+  font-size:13px;
+  background:rgba(255,255,255,.6);
+  border:1px solid rgba(0,0,0,.15);
+  padding:10px 14px;
+  line-height:1.6;
+}
+
+.basement{
+  margin-top:10px;
+  font-weight:700;
+}
+
+.allowed{
+  color:#2f6f8f;
+}
+
+.denied{
+  color:#7a4f4f;
+}
+
+.footer{
+  margin-top:60px;
+  font-size:13px;
+  opacity:.55;
+}
+</style>
+</head>
+
+<body>
+
+<div class="weather-box">
+  <div id="nowDate"></div>
+  <div id="nowTime"></div>
+  <div id="nowWeather"></div>
+</div>
+
+<div class="wrap">
+
+<div class="header">
+  <h1>한아동 생활 수칙</h1>
+  <div class="sub">
+    Hanadong Residential Conduct Guidelines
+  </div>
+</div>
+
+<div class="rule">
+  <h2>출입</h2>
+  <p>한아동의 출입 시간은 제한되지 않습니다.</p>
+  <p>출입 기록은 필수 사항이 아닙니다.</p>
+  <p class="fade">반복적인 출입은 특별한 의미를 갖지 않습니다.</p>
+</div>
+
+<div class="rule">
+  <h2>이동</h2>
+  <p>지도와 실제 동선이 다를 수 있습니다.</p>
+  <p>표시되지 않은 길은 이용 대상이 아닙니다.</p>
+  <p class="fade">방향 감각의 혼란은 일시적입니다.</p>
+</div>
+
+<div class="rule">
+  <h2>시설</h2>
+  <p>운영 시간은 고정되어 있지 않을 수 있습니다.</p>
+  <p>불이 꺼져 있어도 이용이 제한되지는 않습니다.</p>
+</div>
+
+<div class="rule">
+  <h2>환경</h2>
+  <p>야간에도 생활 소음이 발생할 수 있습니다.</p>
+  <p class="fade">기계음과 물소리는 정상 범주에 포함됩니다.</p>
+</div>
+
+<div class="rule">
+  <h2>날씨</h2>
+  <p>한아동의 날씨는 외부 지역과 다를 수 있습니다.</p>
+  <p class="fade">날씨 변화는 내부 기준에 따라 적용됩니다.</p>
+</div>
+
+<div class="rule">
+  <h2>경민 아파트</h2>
+  <p>경민 아파트 지하에는 출입하지 마십시오.</p>
+  <p id="basementRule" class="basement denied">
+    현재 지하 출입은 허용되지 않습니다.
+  </p>
+</div>
+
+<div class="rule">
+  <h2>기타</h2>
+  <p class="fade">
+    불편함은 대부분 일시적입니다.<br>
+    별도의 조치는 필요하지 않습니다.
+  </p>
+</div>
+
+<div class="footer">
+  한아동 관리 기록은 자동으로 갱신되지 않습니다.
+</div>
+
+</div>
+
+<script>
+const weatherTypes = ['맑음','비','눈','번개','안개','강풍'];
+
+function getWeather(){
+  let w = localStorage.getItem('hanadong_weather');
+  let t = localStorage.getItem('hanadong_weather_time');
+  const now = Date.now();
+
+  if(!w || !t || now - Number(t) > 600000){
+    w = weatherTypes[Math.floor(Math.random()*weatherTypes.length)];
+    localStorage.setItem('hanadong_weather', w);
+    localStorage.setItem('hanadong_weather_time', now);
+  }
+  return w;
+}
+
+function updateClock(){
+  const d = new Date();
+  document.getElementById('nowDate').innerText =
+    `${d.getFullYear()}년 ${d.getMonth()+1}월 ${d.getDate()}일`;
+  document.getElementById('nowTime').innerText =
+    `${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`;
+}
+
+const weather = getWeather();
+document.getElementById('nowWeather').innerText = `한아동 ${weather}`;
+
+const basement = document.getElementById('basementRule');
+
+if(weather === '비'){
+  basement.innerText = '비가 오는 날에는 지하 출입이 허용됩니다.';
+  basement.classList.remove('denied');
+  basement.classList.add('allowed');
+}
+
+updateClock();
+setInterval(updateClock,60000);
+</script>
+
+</body>
+</html>
