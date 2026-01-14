@@ -1,3 +1,5 @@
+시설안내
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -55,29 +57,24 @@ h1{
   font-size:34px;
   font-weight:700;
   margin-bottom:14px;
-  filter:blur(1.8px);
-  opacity:.85;
 }
 
 h2{
   font-size:24px;
   margin-bottom:14px;
   color:#5b6b6a;
-  filter:blur(1.6px);
-  opacity:.8;
 }
 
 p{
   font-size:16px;
   line-height:1.9;
   margin:10px 0;
-  filter:blur(2.4px);
-  opacity:.38;
 }
 
 .fade{
-  opacity:.16;
-  filter:blur(4.2px);
+  opacity:.08;
+  filter:blur(6px);
+  transition:opacity .8s ease, filter .8s ease;
 }
 
 img.hero{
@@ -100,7 +97,7 @@ img.hero{
 .footer{
   margin-top:40px;
   font-size:13px;
-  opacity:.18;
+  opacity:0.18;
   filter:blur(4px);
 }
 
@@ -108,14 +105,14 @@ img.hero{
   display:block;
   max-width:260px;
   margin:36px auto 10px;
-  opacity:.9;
-  filter:blur(.9px);
+  opacity:0.9;
+  filter:blur(0.9px);
 }
 
 .mascot-note{
   text-align:center;
   font-size:13px;
-  opacity:.2;
+  opacity:0.2;
   filter:blur(3.8px);
 }
 </style>
@@ -272,7 +269,7 @@ function startVanish(){
 
 function restoreText(){
   clearTimeout(vanishTimer);
-  document.querySelectorAll('.fade, .footer, .mascot-note').forEach(el=>{
+document.querySelectorAll('.fade, .footer, .mascot-note').forEach(el=>{
     el.style.transition='opacity .8s ease, filter .8s ease';
     el.style.opacity='';
     el.style.filter='';
