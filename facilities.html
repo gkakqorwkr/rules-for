@@ -23,8 +23,8 @@ body::before{
   position:fixed;
   inset:0;
   background:url('background.png') center/cover no-repeat;
-  opacity:.18;
-  filter:blur(2px);
+  opacity:.32;
+  filter:blur(0.6px);
   z-index:-2;
 }
 
@@ -33,7 +33,7 @@ body::after{
   position:fixed;
   inset:0;
   background:#eaf6fb;
-  opacity:.85;
+  opacity:.78;
   z-index:-1;
 }
 
@@ -54,7 +54,7 @@ body::after{
 h1{
   font-size:34px;
   font-weight:700;
-  margin-bottom:18px;
+  margin-bottom:14px;
 }
 
 h2{
@@ -70,7 +70,8 @@ p{
 }
 
 .fade{
-  opacity:.55;
+  opacity:.35;
+  filter:blur(0.4px);
 }
 
 img.hero{
@@ -110,7 +111,7 @@ img.hero{
       본 문서는 한아동 내 시설에 대한 기본 정보를 제공합니다.<br>
       시설의 위치, 운영 상태, 목적은 고정되어 있지 않을 수 있습니다.
     </p>
-    <p class="fade">
+    <p class="fade" id="weatherNotice">
       일부 시설은 인식되지 않거나, 표시되지 않을 수 있습니다.
     </p>
   </div>
@@ -227,6 +228,15 @@ document.addEventListener('touchend',e=>{
   if(d>40&&index>0)index--;
   pages.style.transform=`translateX(-${index*100}%)`;
 });
+
+const weather = localStorage.getItem('hanadong_weather') || '맑음';
+const notice = document.getElementById('weatherNotice');
+
+if(weather === '맑음'){
+  notice.style.display = 'none';
+}else{
+  notice.style.display = 'block';
+}
 </script>
 
 </body>
