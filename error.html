@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>오류 신고</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+html,body{
+  margin:0;
+  padding:0;
+  width:100%;
+  height:100%;
+  font-family:'Nanum Myeongjo','Batang',serif;
+}
+
+#warningScreen{
+  position:fixed;
+  inset:0;
+  background:#ffffff;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:10000;
+}
+
+#warningText{
+  color:#b00000;
+  font-size:36px;
+  font-weight:700;
+  letter-spacing:.08em;
+}
+
+#reportPage{
+  display:none;
+  min-height:100vh;
+  background:#eef7fb;
+  color:#243333;
+}
+
+.wrap{
+  max-width:760px;
+  margin:0 auto;
+  padding:56px 24px 120px;
+}
+
+h1{ font-size:32px; margin-bottom:12px; }
+.sub{ font-size:14px; opacity:.6; margin-bottom:36px; }
+
+textarea{
+  width:100%;
+  min-height:120px;
+  font-family:inherit;
+  font-size:15px;
+  padding:12px;
+  border:1px solid rgba(0,0,0,.25);
+}
+
+button{
+  margin-top:14px;
+  padding:10px 18px;
+  font-family:inherit;
+  font-size:15px;
+  border:1px solid rgba(0,0,0,.35);
+  background:#fff;
+  cursor:pointer;
+}
+
+.footer{
+  margin-top:60px;
+  font-size:12px;
+  opacity:.5;
+}
+
+#colorStage{
+  position:fixed;
+  inset:0;
+  display:none;
+  z-index:10001;
+}
+
+#mascotScreen{
+  position:fixed;
+  inset:0;
+  background:#ffffff;
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:10002;
+}
+
+#mascotScreen img{
+  max-width:260px;
+}
+
+#handoScreen{
+  position:fixed;
+  inset:0;
+  background:#ffffff;
+  display:none;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  z-index:10003;
+}
+
+.hando-img{
+  width:90%;
+  max-width:900px;
+  animation:zoomIn 3s ease forwards;
+}
+
+.hando-text{
+  margin-top:28px;
+  font-size:22px;
+  color:#000;
+  letter-spacing:.05em;
+}
+
+@keyframes zoomIn{
+  from{ transform:scale(1); }
+  to{ transform:scale(1.08); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="warningScreen">
+  <div id="warningText"></div>
+</div>
+
+<div id="reportPage">
+  <div class="wrap">
+    <h1>오류 신고</h1>
+    <div class="sub">Hanadong Error Report</div>
+
+    <textarea placeholder="오류 내용을 입력하세요."></textarea>
+    <button onclick="submitReport()">신고 제출</button>
+
+    <div class="footer">모든 오류가 처리되지는 않습니다.</div>
+  </div>
+</div>
+
+<div id="colorStage"></div>
+
+<div id="mascotScreen">
+  <img src="mascot.png">
+</div>
+
+<div id="handoScreen">
+  <img src="hanadong.png" class="hando-img">
+  <div class="hando-text">조정중입니다.</div>
+</div>
+
+<script>
+let reloadCount = Number(localStorage.getItem('hanadong_error_reload') || 0);
+localStorage.setItem('hanadong_error_reload', reloadCount + 1);
+
+const warningText = document.getElementById('warningText');
+const warningScreen = document.getElementById('warningScreen');
+const reportPage = document.getElementById('reportPage');
+const colorStage = document.getElementById('colorStage');
+const mascotScreen = document.getElementById('mascotScreen');
+const handoScreen = document.getElementById('handoScreen');
+
+if(reloadCount === 0){
+  warningText.innerText = '한아동에 ■■■세요.';
+}
+else if(reloadCount === 1){
+  warningText.innerText = '도망가세요.';
+}
+else if(reloadCount === 2){
+  warningText.innerText = '환■합니■.';
+}
+else{
+  warningScreen.style.display = 'none';
+  reportPage.style.display = 'block';
+}
+
+function submitReport(){
+  warningScreen.style.display='none';
+  reportPage.style.display='none';
+  colorStage.style.display='block';
+
+  colorStage.style.background='#000';
+  setTimeout(()=>colorStage.style.background='#2a4f7a',1000);
+  setTimeout(()=>colorStage.style.background='#2f6b4f',2000);
+
+  setTimeout(()=>{
+    colorStage.style.display='none';
+    mascotScreen.style.display='flex';
+  },3000);
+
+  setTimeout(()=>{
+    mascotScreen.style.display='none';
+    handoScreen.style.display='flex';
+  },6000);
+
+  setTimeout(()=>{
+    location.href='index.html';
+  },9000);
+}
+</script>
+
+</body>
+</html>
